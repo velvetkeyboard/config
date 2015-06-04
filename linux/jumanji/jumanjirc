@@ -1,0 +1,27 @@
+# jumanji configuration
+#=== search engines ====================================================
+searchengine google http://www.google.com/search?q=%s
+searchengine wiki http://en.wikipedia.org/w/index.php?search=%s
+searchengine youtube http://www.youtube.com/results?search_query=%s
+searchengine archwiki https://wiki.archlinux.org/index.php?search=%s
+#=== browser settings ================================================
+#set homepage http://www.google.com/
+set homepage https://wiki.archlinux.org/index.php/Jumanji
+set auto_save 60
+set private_browsing true
+set single_instance false
+# Use privoxy for adblocking
+#set proxy localhost:8118 
+#=== look n feel ==================
+#set font monospace normal 9
+set font Clean normal 9
+#set stylesheet file:///root/.local/share/uzbl/customcss/globalmidnight.css
+# follow hints
+#script ~/.config/jumanji/scripts/hinting.js
+# downloads
+set download_dir ~/Downloads/
+set download_command xterm -e sh -c "wget --load-cookies ~/.config/jumanji/cookies '%s' -O '%s'";
+# keybindings
+map <C-,> nav_history previous
+map <C-.> nav_history next
+bmap ^DD$ quit

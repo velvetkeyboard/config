@@ -1,0 +1,35 @@
+! Fonts
+URxvt.allow_bold : false
+URxvt*font       : xft:Terminus-9
+URxvt.scrollBar  : false
+ 
+! Cursor
+URxvt.cursorBlink:          true
+URxvt.cursorColor:          #657b83
+URxvt.cursorUnderline:      false
+
+#Based on
+# http://sunaku.github.io/zenburn-terminal-color-scheme.html
+
+URxvt*color0         : #000d18
+URxvt*color1         : #e89393
+URxvt*color2         : #9ece9e
+URxvt*color3         : #f0dfaf
+URxvt*color4         : #8cd0d3
+URxvt*color5         : #c0bed1
+URxvt*color6         : #dfaf8f
+URxvt*color7         : #efefef
+URxvt*color8         : #000d18
+URxvt*color9         : #e89393
+URxvt*color10        : #9ece9e
+URxvt*color11        : #f0dfaf
+URxvt*color12        : #8cd0d3
+URxvt*color13        : #c0bed1
+URxvt*color14        : #dfaf8f
+URxvt*color15        : #efefef
+URxvt*colorBD        : #ffcfaf
+URxvt*colorIT        : #80d4aa
+URxvt*colorUL        : #ccdc90
+URxvt*foreground     : #dcdccc
+URxvt*background     : #1f1f1f
+URxvt*cursorColor    : #8faf9f

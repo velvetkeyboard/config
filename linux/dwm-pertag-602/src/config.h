@@ -1,0 +1,1 @@
+/home/vyscond/tartarus/config/dwm-pertag-602/config.h

@@ -1,0 +1,72 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'gmarik/Vundle.vim'
+Plugin 'scrooloose/nerdtree'
+Plugin 'mattn/emmet-vim'
+Plugin 'ervandew/supertab'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'jnurmine/Zenburn'
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+set noautoread
+syntax enable
+syntax on
+set number
+set tabstop=4
+set shiftwidth=4
+set smartindent
+set expandtab
+set encoding=utf-8
+
+colorscheme jellybeans
+set mouse=a
+
+"Terminus Everywhere @_@
+if has('gui_running')
+    if has("gui_gtk2")
+        set guifont=Terminus\ 9
+    elseif has("gui_macvim")
+        set guifont=Terminus\ Regular:h9
+    elseif has("gui_win32")
+       set guifont=Terminus:h9:cANSI "windows config
+    endif
+endif
+
+"change ident char color in vim
+"let g:indentLine_color_term = 239
+
+"change ident char color in gvim
+"let g:indentLine_color_gui = '#A4E57E'
+
+"setting the space char
+let g:indentLine_char = '.'
+
+map <F2> :mksession! ~/vim_session <cr> " Quick write session with F2
+map <F3> :source ~/vim_session <cr>     " And load session with F3
+
+map <Tab> :tabnext<cr>
+map <C-Tab> :tabprevious<cr>
+map <C-S> :w
+
+"map <ESC>[5D <C-Left> :b<cr>

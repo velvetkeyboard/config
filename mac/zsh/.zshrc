@@ -61,6 +61,9 @@ bindkey '\033f' forward-word # option + ->
 bindkey '^[[3~' delete-char # fn + delete
 bindkey '^[[3;5~' delete-word # fn + control + delete
 bindkey '^[[3;6~' backward-kill-word # control + delete
+bindkey "^[[A" history-search-backward
+bindkey "^[[B" history-search-forward
+
 else
 
 bindkey "\e[1~" beginning-of-line # Home

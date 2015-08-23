@@ -14,6 +14,7 @@ Plugin 'mattn/emmet-vim'
 Plugin 'ervandew/supertab'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'jnurmine/Zenburn'
+Plugin 'ctrlpvim/ctrlp.vim'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -62,11 +63,23 @@ endif
 "setting the space char
 let g:indentLine_char = '.'
 
+"explore mode
+let g:netrw_liststyle=3
+
+"controlP
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](\.(git|hg|svn))|(env)$',
+  \ 'file': '\v\.(exe|so|dll)$',
+  \ 'link': 'some_bad_symbolic_links',
+  \ }
+
 map <F2> :mksession! ~/vim_session <cr> " Quick write session with F2
 map <F3> :source ~/vim_session <cr>     " And load session with F3
 
 map <Tab> :tabnext<cr>
 map <C-Tab> :tabprevious<cr>
 map <C-S> :w
-
+map <C-F8> :NERDTreeToggle<CR>
+map <C-n> :tabnew<CR>
+map <C-e> :Explore<CR>
 "map <ESC>[5D <C-Left> :b<cr>

@@ -11,7 +11,7 @@ servers = (
 chatnets = { 
   freenode = {
     type = "IRC";
-    autosendcmd = "/^msg nickserv identify [password];wait 2000";
+    autosendcmd = "/^msg nickserv identify [your_password];wait 1800";
   };
   bitlbee = { 
     type = "IRC"; 
@@ -19,7 +19,7 @@ chatnets = {
 };
 
 channels = (
-  { name = "#archlinux"; chatnet = "freenode"; autojoin = "yes"; }
+  { name = "#django"; chatnet = "freenode"; autojoin = "yes"; }
 );
 
 aliases = {
@@ -38,7 +38,7 @@ aliases = {
   WI = "whois";
   WII = "whois $0 $0";
   WW = "whowas";
-  W = "who";
+  W = "window";
   N = "names";
   M = "msg";
   T = "topic";
@@ -187,10 +187,10 @@ settings = {
   core = {
     real_name = "necro";
     user_name = "bump";
-    nick = "[nickname]";
+    nick = "[your_nickname]";
     timestamp_format = "%H.%M";
   };
   "fe-text" = { actlist_sort = "refnum"; };
   "irc/dcc" = { dcc_download_path = "~/Downloads"; };
-  "fe-common/core" = { term_charset = "ISO8859-1"; theme = "zenbarn"; };
+  "fe-common/core" = { term_charset = "ISO8859-1"; theme = "pbrisbin"; };
 };

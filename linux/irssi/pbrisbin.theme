@@ -126,10 +126,10 @@ abstracts = {
   ## Statusbar
   ##
   sb_background = "%n%0";
-  sbstart = " ";
-  sbend = " ";
-  prompt = "   %c:%n ";
-  sb = "%W$*";
+  sbstart = " "; # statusbar prefix
+  sbend = " "; # statusbar suffix
+  prompt = " %c:%n ";
+  sb = "%W | $*";
   sbmode = "";
   sbaway = " (%Gaway%n)";
 

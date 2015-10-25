@@ -27,7 +27,7 @@ zstyle ':completion:*:cd:*' ignore-parents parent pwd
 ##################################################################
 # This will set the default prompt to the walters theme
 
-prompt walters
+#prompt walters
 zstyle ':completion:*' menu select
 setopt completealiases
 autoload -U colors && colors
@@ -35,28 +35,45 @@ autoload -U colors && colors
 ##################################################################
 # Prompt Editing
 
-#PROMPT="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg[yellow]%}%1~ %{$reset_color%}%#"
-PROMPT="$fg[white]%n@%m%#
-%{$fg[white]%}> "
+setopt PROMPT_SUBST
+
+#$fg[white]%n@%m %#
+#PROMPT="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m?%{$fg[yellow]%}%1~?%{$reset_color%}%#"
+
+function git_branch() {
+    ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+    echo "[$(git branch)]"
+}
+
+lambda=$(echo "\u03BB")
+
+#PROMPT=' %# '
+PROMPT=' $lambda '
+RPROMPT='$(git_branch) %d'
 
 ##################################################################
 # Key Mapping
 
-# based on default values and some additions on Yosemite 10.10.3
+# based on default values and some additions on Yosemite 10.10.3 with iTerm2
+# MAC OSX
 if [ `uname` '==' "Darwin" ]; then
-bindkey '^[[1;5A' beginning-of-line # control + up-arrow
-bindkey '^[[1;5B' end-of-line # control + down-arrow
-bindkey '\033[1;5D' backward-word # control + <-
-bindkey '\033[1;5C' forward-word # control + ->
-#bindkey '\033[1;2D' ... # shift + <-
-#bindkey '\033[1;2C' ... # shift + ->
-#bindkey '\033[1;2A' ... # shift + up-arrow
-#bindkey '\033[1;2B' ... # shift + down-arrow
+
+bindkey '^[[H' beginning-of-line # option + <-
+bindkey '^[[F' end-of-line       # option + ->
+bindkey '^[[1;5D' backward-word  # control + <-
+bindkey '^[[1;5C' forward-word   # control + ->
+bindkey '^[[1;6D' backward-word  # alt + <-
+bindkey '^[[1;6C' forward-word   # alt + ->
+
 bindkey '^[[3~' delete-char # fn + delete
 bindkey '^[[3;5~' delete-word # fn + control + delete
-bindkey '^[[3;6~' backward-kill-word # control + delete
-else
+bindkey '^[[4;5~' backward-kill-word # control + delete
 
+bindkey "^[[A" history-search-backward
+bindkey "^[[B" history-search-forward
+
+else
+# LINUX
 bindkey "\e[1~" beginning-of-line # Home
 bindkey "\e[4~" end-of-line # End
 bindkey "\e[5~" beginning-of-history # PageUp
@@ -126,6 +143,7 @@ alias -s PKGBUILD=$EDITOR
 alias -s php=$EDITOR
 
 # Normal aliases
+alias vimrc='vim ~/.vimrc'
 #alias webz=$BROWSER
 #alias music=mocp
 #alias dota2='steam -applaunch 570'
@@ -138,7 +156,9 @@ alias -s php=$EDITOR
 #alias f='find |grep'
 alias c="clear"
 alias ..='cd ..'
-alias hist="grep '$1' /home/paul/.zsh_history"
+alias .='ls'
+alias hist="grep '$1' ~/.zsh_history"
+alias showinvichars="cat -e -t -v '$1'"
 #alias mem="free -m"
 #alias smooth='su root -c "cpupower frequency-set -g powersave"'
 #alias overpower='su root -c "cpupower frequency-set -g performance"'
@@ -146,7 +166,6 @@ alias hist="grep '$1' /home/paul/.zsh_history"
 #alias sudo='su root -c '"$*"
 #alias dir='ls -1'
 #alias gvim='gvim -geom 82x35'
-#alias nicotine='/home/paul/downloads/nicotine-1.0.8rc1/nicotine'
 #alias ppp-on='sudo /usr/sbin/ppp-on'
 #alias ppp-off='sudo /usr/sbin/ppp-off'
 #alias firestarter='sudo su -c firestarter'
@@ -160,3 +179,8 @@ alias hist="grep '$1' /home/paul/.zsh_history"
 # command S equivalent to command &> /dev/null &
 #alias -g S='&> /dev/null &'
 
+#alias gitcesupa=git config --global url."https://".insteadOf git://
+#alias gitnormal=git config --global url."git://".insteadOf https://
+alias gitgraph="git log --graph"
+
+PATH=/opt/local/bin:/opt/local/sbin:$PATH

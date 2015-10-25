@@ -2,8 +2,8 @@ export HISTFILE=~/.zsh_history
 export HISTSIZE=50000
 export SAVEHIST=50000
 export EDITOR="vim"
-export BROWSER="google-chrome-stable --alsa-output-device=equal"
-eval `dircolors -b`
+#export BROWSER="google-chrome-stable --alsa-output-device=equal"
+#eval `dircolors -b`
 
 autoload -U compinit promptinit
 compinit
@@ -27,7 +27,7 @@ zstyle ':completion:*:cd:*' ignore-parents parent pwd
 ##################################################################
 # This will set the default prompt to the walters theme
 
-prompt walters
+#prompt walters
 zstyle ':completion:*' menu select
 setopt completealiases
 autoload -U colors && colors
@@ -35,13 +35,45 @@ autoload -U colors && colors
 ##################################################################
 # Prompt Editing
 
-#PROMPT="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m %{$fg[yellow]%}%1~ %{$reset_color%}%#"
-PROMPT="%{$fg[white]%}[%D]
-%{$fg[white]%}>"
+setopt PROMPT_SUBST
+
+#$fg[white]%n@%m %#
+#PROMPT="%{$fg[red]%}%n%{$reset_color%}@%{$fg[blue]%}%m?%{$fg[yellow]%}%1~?%{$reset_color%}%#"
+
+function git_branch() {
+    ref=$(git symbolic-ref HEAD 2> /dev/null) || return
+    echo "[$(git branch)]"
+}
+
+lambda=$(echo "\u03BB")
+
+#PROMPT=' %# '
+PROMPT=' $lambda '
+RPROMPT='$(git_branch) %d'
 
 ##################################################################
 # Key Mapping
 
+# based on default values and some additions on Yosemite 10.10.3 with iTerm2
+# MAC OSX
+if [ `uname` '==' "Darwin" ]; then
+
+bindkey '^[[H' beginning-of-line # option + <-
+bindkey '^[[F' end-of-line       # option + ->
+bindkey '^[[1;5D' backward-word  # control + <-
+bindkey '^[[1;5C' forward-word   # control + ->
+bindkey '^[[1;6D' backward-word  # alt + <-
+bindkey '^[[1;6C' forward-word   # alt + ->
+
+bindkey '^[[3~' delete-char # fn + delete
+bindkey '^[[3;5~' delete-word # fn + control + delete
+bindkey '^[[4;5~' backward-kill-word # control + delete
+
+bindkey "^[[A" history-search-backward
+bindkey "^[[B" history-search-forward
+
+else
+# LINUX
 bindkey "\e[1~" beginning-of-line # Home
 bindkey "\e[4~" end-of-line # End
 bindkey "\e[5~" beginning-of-history # PageUp
@@ -66,37 +98,40 @@ bindkey "\e[H" beginning-of-line
 bindkey "\e[F" end-of-line
 bindkey "^[[A" history-search-backward
 bindkey "^[[B" history-search-forward
+
+fi
+
 ##################################################################
 # My aliases
 
 # Set up auto extension stuff
 # Web
-alias -s html=$BROWSER
-alias -s org=$BROWSER
-alias -s com=$BROWSER
-alias -s net=$BROWSER
+#alias -s html=$BROWSER
+#alias -s org=$BROWSER
+#alias -s com=$BROWSER
+#alias -s net=$BROWSER
 
 # - Media
 # -------- Image
-alias -s png=viewnior
-alias -s jpg=viewnior
-alias -s gif=viewnior
+#alias -s png=viewnior
+#alias -s jpg=viewnior
+#alias -s gif=viewnior
 # -------- Video
-alias -s avi=mplayer
-alias -s mp4=mplayer
-alias -s rmvb=mplayer
-alias -s mkv=mplayer
-alias -s wmv=mplayer
+#alias -s avi=mplayer
+#alias -s mp4=mplayer
+#alias -s rmvb=mplayer
+#alias -s mkv=mplayer
+#alias -s wmv=mplayer
 # -------- Audio
-alias -s mp3=mocp -l
-alias -s flac=mocp -l
+#alias -s mp3=mocp -l
+#alias -s flac=mocp -l
 
 # Uncompress
-alias -s gz='tar -xzvf'
-alias -s bz2='tar -xjvf'
-alias -s rar='unrar x'
-alias -s zip='unzip'
-alias -s sh='sh'
+#alias -s gz='tar -xzvf'
+#alias -s bz2='tar -xjvf'
+#alias -s rar='unrar x'
+#alias -s zip='unzip'
+#alias -s sh='sh'
 
 # Programming
 alias -s java=$EDITOR
@@ -108,27 +143,29 @@ alias -s PKGBUILD=$EDITOR
 alias -s php=$EDITOR
 
 # Normal aliases
-alias webz=$BROWSER
-alias music=mocp
-alias dota2='steam -applaunch 570'
-alias battlenet='WINEARCH=win32 WINEPREFIX=~/win32 wine "C:\Program Files\Battle.net\Battle.net Launcher.exe" --nohttpaut'
-alias hearthstone='WINEARCH=win32 WINEPREFIX=~/win32 wine "C:\Program Files\Hearthstone\Hearthstone Beta Launcher.exe"'
-alias nvidia='optirun nvidia-settings -c :8'
-alias ls='ls --color=auto -Fsh'
-alias lsd='ls -ld *(-/DN)'
-alias lsa='ls -ld .*'
-alias f='find |grep'
+alias vimrc='vim ~/.vimrc'
+#alias webz=$BROWSER
+#alias music=mocp
+#alias dota2='steam -applaunch 570'
+#alias battlenet='WINEARCH=win32 WINEPREFIX=~/win32 wine "C:\Program Files\Battle.net\Battle.net Launcher.exe" --nohttpaut'
+#alias hearthstone='WINEARCH=win32 WINEPREFIX=~/win32 wine "C:\Program Files\Hearthstone\Hearthstone Beta Launcher.exe"'
+#alias nvidia='optirun nvidia-settings -c :8'
+#alias ls='ls --color=auto -Fsh'
+#alias lsd='ls -ld *(-/DN)'
+#alias lsa='ls -ld .*'
+#alias f='find |grep'
 alias c="clear"
 alias ..='cd ..'
-alias hist="grep '$1' /home/paul/.zsh_history"
-alias mem="free -m"
-alias smooth='su root -c "cpupower frequency-set -g powersave"'
-alias overpower='su root -c "cpupower frequency-set -g performance"'
+alias .='ls'
+alias hist="grep '$1' ~/.zsh_history"
+alias showinvichars="cat -e -t -v '$1'"
+#alias mem="free -m"
+#alias smooth='su root -c "cpupower frequency-set -g powersave"'
+#alias overpower='su root -c "cpupower frequency-set -g performance"'
 
 #alias sudo='su root -c '"$*"
 #alias dir='ls -1'
 #alias gvim='gvim -geom 82x35'
-#alias nicotine='/home/paul/downloads/nicotine-1.0.8rc1/nicotine'
 #alias ppp-on='sudo /usr/sbin/ppp-on'
 #alias ppp-off='sudo /usr/sbin/ppp-off'
 #alias firestarter='sudo su -c firestarter'
@@ -142,3 +179,8 @@ alias overpower='su root -c "cpupower frequency-set -g performance"'
 # command S equivalent to command &> /dev/null &
 #alias -g S='&> /dev/null &'
 
+#alias gitcesupa=git config --global url."https://".insteadOf git://
+#alias gitnormal=git config --global url."git://".insteadOf https://
+alias gitgraph="git log --graph"
+
+PATH=/opt/local/bin:/opt/local/sbin:$PATH

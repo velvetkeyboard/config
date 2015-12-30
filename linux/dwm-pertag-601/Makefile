@@ -1,0 +1,2 @@
+install:
+	makepkg -efi --asroot

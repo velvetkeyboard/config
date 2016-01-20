@@ -1,0 +1,22 @@
+{
+	"color_scheme": "Packages/Colorsublime - Themes/cache/Colorsublime-Themes-master/themes/Twilight.tmTheme",
+	"font_face": "TerminusTTF",
+	"font_size": 12,
+	"font_options": ["no_antialias"],
+	"ignored_packages":
+	[
+		"Vintage"
+	],
+	"rulers":
+	[
+		80,
+		100,
+		120
+	],
+	"show_encoding": true,
+	"tab_size": 4,
+	"theme": "Spacegray.sublime-theme",
+	"translate_tabs_to_spaces": true,
+	"use_tab_stops": true,
+	"word_wrap": false
+}

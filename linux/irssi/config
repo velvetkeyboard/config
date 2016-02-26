@@ -5,21 +5,15 @@ servers = (
     port = "6667";
     use_ssl = "no";
     ssl_verify = "no";
+    password = "[your_password]";
   }
 );
 
-chatnets = { 
-  freenode = {
-    type = "IRC";
-    autosendcmd = "/^msg nickserv identify [your_password];wait 1800";
-  };
-  bitlbee = { 
-    type = "IRC"; 
-  };
-};
+chatnets = { freenode = { type = "IRC"; }; };
 
 channels = (
   { name = "#django"; chatnet = "freenode"; autojoin = "yes"; }
+  { name = "#restframework"; chatnet = "freenode"; autojoin = "yes"; }
 );
 
 aliases = {
@@ -188,9 +182,21 @@ settings = {
     real_name = "necro";
     user_name = "bump";
     nick = "[your_nickname]";
-    timestamp_format = "%H.%M";
+    timestamp_format = "[%H:%M]";
   };
   "fe-text" = { actlist_sort = "refnum"; };
   "irc/dcc" = { dcc_download_path = "~/Downloads"; };
-  "fe-common/core" = { term_charset = "ISO8859-1"; theme = "pbrisbin"; };
+  "fe-common/core" = {
+    term_charset = "ISO8859-1";
+    theme = "pbrisbin";
+    beep_msg_level = "MSGS DCC DCCMSGS HILIGHT";
+    bell_beeps = "yes";
+  };
 };
+ignores = (
+  { level = "JOINS PARTS QUITS NICKS"; channels = ( "*" ); },
+  {
+    level = "JOINS PARTS QUITS NICKS";
+    channels = ( "#django", "#restframework" );
+  }
+);

@@ -1,5 +1,42 @@
-set nocompatible              " be iMproved, required
+" Vyscond's vim setup
+
+" ===========
+" Basics
+" ============
+
 filetype off                  " required
+
+set nocompatible              " be iMproved, required
+set noautoread
+set number
+set backspace=2
+set mouse=a
+set encoding=utf-8
+set tw=79
+set colorcolumn=80
+set tabstop=4
+set shiftwidth=4
+set smartindent
+set expandtab
+
+syntax enable
+syntax on
+
+" Terminus is love, Terminus is life
+" Set it everywhere @_@
+if has('gui_running')
+    if has("gui_gtk2")
+        set guifont=Terminus\ 9
+    elseif has("gui_macvim")
+        set guifont=Terminus\ Regular:h9
+    elseif has("gui_win32")
+       set guifont=Terminus:h9:cANSI "windows config
+    endif
+endif
+
+" =====================================
+" Vundle Setup [bgn]
+" =====================================
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -10,11 +47,14 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
+Bundle 'jistr/vim-nerdtree-tabs'
+Plugin 'Yggdroot/indentLine'
 Plugin 'mattn/emmet-vim'
 Plugin 'ervandew/supertab'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'jnurmine/Zenburn'
 Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'beyondwords/vim-twig'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -30,56 +70,68 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-set noautoread
-syntax enable
-syntax on
-set number
-set tabstop=4
-set shiftwidth=4
-set smartindent
-set expandtab
-set encoding=utf-8
+" =====================================
+" Vundle Setup [end]
+" =====================================
 
-colorscheme jellybeans
-set mouse=a
+"colorscheme jellybeans
+colorscheme zenburn
 
-"Terminus Everywhere @_@
-if has('gui_running')
-    if has("gui_gtk2")
-        set guifont=Terminus\ 9
-    elseif has("gui_macvim")
-        set guifont=Terminus\ Regular:h9
-    elseif has("gui_win32")
-       set guifont=Terminus:h9:cANSI "windows config
-    endif
-endif
+" ==============================
+" Plugin settings
+" ==============================
 
-"change ident char color in vim
-"let g:indentLine_color_term = 239
+" Vim
+let g:indentLine_color_term = 242
 
-"change ident char color in gvim
-"let g:indentLine_color_gui = '#A4E57E'
+"GVim
+let g:indentLine_color_gui = '#EFEFEF'
 
-"setting the space char
-let g:indentLine_char = '.'
+" none X terminal
+let g:indentLine_color_tty_light = 7 " (default: 4)
+let g:indentLine_color_dark = 1 " (default: 2)
+
+let g:indentLine_char = '|'
+
+"let g:indentLine_concealcursor = 'vc' "(default 'inc')
+"let g:indentLine_conceallevel = 0 "(default 2)
+
+"let g:indentLine_enabled = 1
 
 "explore mode
 let g:netrw_liststyle=3
 
 "controlP
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.(git|hg|svn))|(env)$',
+  \ 'dir':  '\v[\/](\.(git|hg|svn|__pycache__))|(env)$',
   \ 'file': '\v\.(exe|so|dll)$',
   \ 'link': 'some_bad_symbolic_links',
   \ }
 
+" =====================
+" Key Mapping
+" =====================
+
+" Sessions
 map <F2> :mksession! ~/vim_session <cr> " Quick write session with F2
 map <F3> :source ~/vim_session <cr>     " And load session with F3
 
+" Tabs
 map <Tab> :tabnext<cr>
 map <C-Tab> :tabprevious<cr>
-map <C-S> :w
-map <C-F8> :NERDTreeToggle<CR>
 map <C-n> :tabnew<CR>
-map <C-e> :Explore<CR>
+map <C-e> :NERDTreeTabsToggle<CR>
+
+"map <C-S> :w
+"map <C-e> :Explore<CR>
 "map <ESC>[5D <C-Left> :b<cr>
+
+" Navigation
+map <C-k> :wincmd k<CR>
+map <C-j> :wincmd j<CR>
+map <C-h> :wincmd h<CR>
+map <C-l> :wincmd l<CR>
+
+" Fn - Yup! Imma still using make :3
+map <F10> :!make run<CR>
+map <F11> :!make build<CR>

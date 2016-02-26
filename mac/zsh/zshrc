@@ -47,9 +47,12 @@ function git_branch() {
 
 lambda=$(echo "\u03BB")
 
-#PROMPT=' %# '
-PROMPT=' $lambda '
-RPROMPT='$(git_branch) %d'
+PROMPT='
+%d
+ %# '
+#PROMPT=' $lambda '
+#RPROMPT='$(git_branch) %d'
+#RPROMPT='%d'
 
 ##################################################################
 # Key Mapping
@@ -163,6 +166,8 @@ alias showinvichars="cat -e -t -v '$1'"
 #alias smooth='su root -c "cpupower frequency-set -g powersave"'
 #alias overpower='su root -c "cpupower frequency-set -g performance"'
 
+alias vim='vim74'
+alias youtubemp3='youtube-dl --extract-audio --audio-format mp3 '"$*"
 #alias sudo='su root -c '"$*"
 #alias dir='ls -1'
 #alias gvim='gvim -geom 82x35'
@@ -182,5 +187,12 @@ alias showinvichars="cat -e -t -v '$1'"
 #alias gitcesupa=git config --global url."https://".insteadOf git://
 #alias gitnormal=git config --global url."git://".insteadOf https://
 alias gitgraph="git log --graph"
-
-PATH=/opt/local/bin:/opt/local/sbin:$PATH
+alias localip="ipconfig getifaddr en0"
+alias postgresconf="vim /Users/vyscond/Library/Application\ Support/Postgres/var-9.4/postgresql.conf"
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+export PATH=/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH
+export PATH=/Users/vyscond/Library/Android/sdk/platform-tools:$PATH
+export PATH=/Users/vyscond/Library/Android/sdk/tools:$PATH
+export PATH=/Users/vyscond/Library/Android/sdk/extras:$PATH
+#export PATH=/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl:$PATH
+#node_modules/grunt-cli/bin

@@ -12,13 +12,13 @@ set number
 set backspace=2
 set mouse=a
 set encoding=utf-8
-set tw=79
+"set tw=79
 set colorcolumn=80
 set tabstop=4
 set shiftwidth=4
 set smartindent
 set expandtab
-
+set wrap!
 syntax enable
 syntax on
 
@@ -53,7 +53,8 @@ Plugin 'mattn/emmet-vim'
 Plugin 'ervandew/supertab'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'jnurmine/Zenburn'
-Plugin 'ctrlpvim/ctrlp.vim'
+"Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'terryma/vim-multiple-cursors'
 Plugin 'beyondwords/vim-twig'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -94,19 +95,21 @@ let g:indentLine_color_dark = 1 " (default: 2)
 let g:indentLine_char = '|'
 
 "let g:indentLine_concealcursor = 'vc' "(default 'inc')
-"let g:indentLine_conceallevel = 0 "(default 2)
+"let g:indentLine_conceallevel=0 "(default 2)
 
 "let g:indentLine_enabled = 1
 
 "explore mode
 let g:netrw_liststyle=3
 
+"let g:user_emmet_leader_key=','
+
 "controlP
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.(git|hg|svn|__pycache__))|(env)$',
-  \ 'file': '\v\.(exe|so|dll)$',
-  \ 'link': 'some_bad_symbolic_links',
-  \ }
+"let g:ctrlp_custom_ignore = {
+"  \ 'dir':  '\v[\/](\.(git|hg|svn|__pycache__))|(env)$',
+"  \ 'file': '\v\.(exe|so|dll)$',
+"  \ 'link': 'some_bad_symbolic_links',
+"  \ }
 
 " =====================
 " Key Mapping

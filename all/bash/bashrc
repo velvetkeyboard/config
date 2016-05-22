@@ -1,0 +1,22 @@
+alias .='ls'
+alias ..='cd ..'
+alias tartarus='ssh vyscond@localhost -p 2200'
+#alias vim='/usr/local/bin/vim'
+
+export ANDROID_HOME=/Users/vyscond/Library/Android/sdk
+export PATH=/Users/vyscond/Library/Android/sdk/tools:$PATH
+export PATH=/Users/vyscond/Library/Android/sdk/platform-tools:$PATH
+export PATH=/Users/vyscond/Applications/Genymotion.app/Contents/MacOS/player.app/Contents/MacOS:$PATH
+export PATH=/Users/vyscond/Applications/Genymotion\ Shell.app/Contents/MacOS:$PATH
+
+###-tns-completion-start-###
+if [ -f /Users/vyscond/.tnsrc ]; then 
+    source /Users/vyscond/.tnsrc 
+fi
+###-tns-completion-end-###
+
+#bindkey -k up    history-search-backward
+#bindkey -k down  history-search-forward
+
+PS1='\u@\h \w
+\$ '

@@ -1,0 +1,38 @@
+
+# "auto-complete" to ctrl-D ?
+set filec
+# "auto-complete" to tab action
+set autolist
+# no beeps!
+set nobeep
+set history=1000
+set savehist=(1000 merge)
+
+# -(Prompt)-------------------------------------------------------------------
+
+# ANSI Colors
+#setenv black '%{\033[30m%}'
+setenv red   '%{\033[31m%}'
+setenv green '%{\033[32m%}'
+setenv blue  '%{\033[34m%}'
+setenv cyan  '%{\033[36m%}'
+setenv lgrey '%{\033[37m%}'
+
+set prompt = "($green%n$lgrey@$blue%m) $lgrey%~\n $cyan%#$lgrey "
+
+# -(Macros)-------------------------------------------------------------------
+alias . 'ls -sbFG'
+alias .. 'cd ..'
+alias ls 'ls -sbFG'
+alias mail 'open -a Mail'
+alias edit 'vim'
+
+# -(Keymap)-------------------------------------------------------------------
+
+bindkey -k up    history-search-backward
+bindkey -k down  history-search-forward
+
+# OSX
+if ( `uname -s` == 'Darwin' ) then
+    bindkey "\e[3~" delete-char
+endif

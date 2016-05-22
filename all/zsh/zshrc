@@ -5,9 +5,9 @@ export EDITOR="vim"
 #export BROWSER="google-chrome-stable --alsa-output-device=equal"
 #eval `dircolors -b`
 
-autoload -U compinit promptinit
-compinit
-promptinit
+#autoload -U compinit promptinit
+#compinit
+#promptinit
 
 ##################################################################
 # Stuff to make my life easier

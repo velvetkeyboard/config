@@ -56,6 +56,9 @@ Plugin 'jnurmine/Zenburn'
 "Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'beyondwords/vim-twig'
+Plugin 'juanedi/predawn'
+Plugin 'KKPMW/moonshine-vim'
+Plugin 'scrooloose/nerdcommenter'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -76,7 +79,8 @@ filetype plugin indent on    " required
 " =====================================
 
 "colorscheme jellybeans
-colorscheme zenburn
+"colorscheme zenburn
+colorscheme moonshine
 
 " ==============================
 " Plugin settings
@@ -114,6 +118,13 @@ let g:netrw_liststyle=3
 " =====================
 " Key Mapping
 " =====================
+
+" ---(NERD Commenter)---------------------------------------------------------
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" " Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
 
 " Sessions
 map <F2> :mksession! ~/vim_session <cr> " Quick write session with F2

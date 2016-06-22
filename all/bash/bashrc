@@ -9,12 +9,6 @@ export PATH=/Users/vyscond/Library/Android/sdk/platform-tools:$PATH
 export PATH=/Users/vyscond/Applications/Genymotion.app/Contents/MacOS/player.app/Contents/MacOS:$PATH
 export PATH=/Users/vyscond/Applications/Genymotion\ Shell.app/Contents/MacOS:$PATH
 
-###-tns-completion-start-###
-if [ -f /Users/vyscond/.tnsrc ]; then 
-    source /Users/vyscond/.tnsrc 
-fi
-###-tns-completion-end-###
-
 #bindkey -k up    history-search-backward
 #bindkey -k down  history-search-forward
 

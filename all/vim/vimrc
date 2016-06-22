@@ -53,11 +53,10 @@ Plugin 'mattn/emmet-vim'
 Plugin 'ervandew/supertab'
 Plugin 'nanotech/jellybeans.vim'
 Plugin 'jnurmine/Zenburn'
+Plugin 'KKPMW/moonshine-vim'
 "Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'beyondwords/vim-twig'
-Plugin 'juanedi/predawn'
-Plugin 'KKPMW/moonshine-vim'
 Plugin 'scrooloose/nerdcommenter'
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

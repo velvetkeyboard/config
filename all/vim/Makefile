@@ -1,18 +1,23 @@
+.PHONY: copy_after
+
 pull:
 	cp -r ~/.vim/after .
 	cp ~/.vimrc vimrc
 
-install:
-	echo [copying vimrc]
-	@cp vimrc ~/.vimrc
-	echo [installing vundle]
-	@mkdir -p ~/.vim/bundle
-	@git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-	@vim +PluginInstall +qall
+pull_basic:
+	cp -r ~/.vim/after .
+	cp ~/.vimrc vimrc_basic
+
+copy_after:
+	echo "copying after ..."
 	@cp -r after ~/.vim/.
 
-update:
-	echo [copying vimrc]
+install_basic: copy_after
+	echo "copying vimrc ..."
+	@cp vimrc_basic ~/.vimrc
+
+
+install: copy_after
+	echo "copying vimrc ..."
 	@cp vimrc ~/.vimrc
-	@vim +PluginInstall +qall
-	@cp -r after ~/.vim/.
+

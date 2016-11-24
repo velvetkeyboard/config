@@ -1,0 +1,64 @@
+" Vyscond's vim setup
+
+" Basics
+" ------
+
+filetype off  " required
+
+set nocompatible  " be iMproved, required
+set noautoread
+set number
+set backspace=2
+set mouse=a
+set encoding=utf-8
+set tw=79
+set colorcolumn=80
+set tabstop=4
+set shiftwidth=4
+set smartindent
+set expandtab
+set wrap!
+set hlsearch!
+set clipboard=unnamed
+
+syntax enable
+syntax on
+
+" Terminus is love, Terminus is life
+if has('gui_running')
+    if has("gui_gtk2")
+        set guifont=Terminus\ 9
+    elseif has("gui_macvim")
+        set guifont=Terminus\ Regular:h9
+    elseif has("gui_win32")
+       set guifont=Terminus:h9:cANSI "windows config
+    endif
+endif
+
+
+"explore mode
+let g:netrw_liststyle=3
+
+
+" Key Mapping
+" -----------
+
+" Sessions
+map <F2> :mksession! ~/vim_session <cr> " Quick write session with F2
+map <F3> :source ~/vim_session <cr>     " And load session with F3
+
+" Tabs
+map <Tab> :tabnext<cr>
+map <S-Tab> :tabprevious<cr>
+map <C-n> :tabnew<CR>
+
+map <C-S> :w
+map <C-q> :q
+map <C-e> :Explore<CR>
+
+" Navigation
+map <C-k> :wincmd k<CR>
+map <C-j> :wincmd j<CR>
+map <C-h> :wincmd h<CR>
+map <C-l> :wincmd l<CR>
+

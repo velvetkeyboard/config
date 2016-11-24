@@ -3,5 +3,5 @@ pull:
 	cp ~/.bashrc bashrc
 
 install:
-	cp -rf bashrc ~/.bashrc
+	cp -rf bash_profile ~/.bash_profile
 	cp -rf inputrc ~/.inputrc

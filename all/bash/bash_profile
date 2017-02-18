@@ -1,28 +1,31 @@
-alias .='ls'
-alias ..='cd ..'
-alias vimrc='~/.vimrc'
+# Colors
+SH_COLOR_RESET="\[$(tput sgr0)\]"
+SH_COLOR_BLUE="\[\033[38;5;31m\]"
+SH_COLOR_RED="\[\033[38;5;196m\]"
+SH_COLOR_YELLOW="\[\033[38;5;220m\]"
+SH_COLOR_GREEN="\[\033[38;5;48m\]"
 
-alias tartarus='ssh vyscond@localhost -p 2200'
-
-export ANDROID_HOME=/Users/vyscond/Library/Android/sdk
-export PATH=/Users/vyscond/Library/Android/sdk/tools:$PATH
-export PATH=/Users/vyscond/Library/Android/sdk/platform-tools:$PATH
-export PATH=/Users/vyscond/Applications/Genymotion.app/Contents/MacOS/player.app/Contents/MacOS:$PATH
-export PATH=/Users/vyscond/Applications/Genymotion\ Shell.app/Contents/MacOS:$PATH
-export POSTGRES=/Applications/Postgres.app/Contents/Versions/9.5/bin
-export PATH=$POSTGRES:$PATH
-
-###-tns-completion-start-###
-if [ -f /Users/vyscond/.tnsrc ]; then 
-    source /Users/vyscond/.tnsrc 
+if [ `id -u` ]; then
+  DOLLAR="${SH_COLOR_BLUE}λ${SH_COLOR_RESET}"
+else
+  DOLLAR="${SH_COLOR_RED}#${SH_COLOR_RESET}"
 fi
-###-tns-completion-end-###
-PS1='\u@\h \w
-\$ '
 
+SH_CURRENT_USER="${SH_COLOR_GREEN}\u${SH_COLOR_RESET}"
+SH_CURRENT_HOST="${SH_COLOR_YELLOW}\H${SH_COLOR_RESET}"
 
-# The next line updates PATH for the Google Cloud SDK.
-source '/Users/vyscond/google-cloud-sdk/path.bash.inc'
+PS1="${SH_CURRENT_USER} at ${SH_CURRENT_HOST} on \w\n$DOLLAR "
 
-# The next line enables shell command completion for gcloud.
-source '/Users/vyscond/google-cloud-sdk/completion.bash.inc'
+# Helpers
+alias docker_env='eval $(docker-machine env)'
+alias vimrc='vim ~/.vimrc'
+alias ls='ls -agh'
+alias ..='cd ..'
+alias .='ls'
+
+eval $(docker-machine env)
+#case `id -u` in
+#0) PS1="${PS1}# ";;
+#*) PS1="${PS1}\n ";;
+#esac
+

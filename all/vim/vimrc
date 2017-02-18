@@ -19,8 +19,19 @@ set shiftwidth=4
 set smartindent
 set expandtab
 set wrap!
+set clipboard=unnamed
+"set noswapfile
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swap//
+set undodir=~/.vim/undo//
 syntax enable
 syntax on
+
+" , it will replace W in command line with w, but only if it is neither
+" followed nor preceded by word character, so :W<CR> will be replaced with
+" :w<CR>, but :Write won't.
+cnoreabbrev W w
+cnoreabbrev Q q
 
 " Terminus is love, Terminus is life
 " Set it everywhere @_@
@@ -40,6 +51,7 @@ if empty(glob("~/.vim/autoload/plug.vim"))
 else
   call plug#begin('~/.vim/plugged')
   " Plug 'gmarik/Vundle.vim'
+  Plug 'vim-airline/vim-airline'
   Plug 'scrooloose/nerdtree'
   Plug 'jistr/vim-nerdtree-tabs'
   Plug 'Yggdroot/indentLine'
@@ -48,15 +60,16 @@ else
   Plug 'nanotech/jellybeans.vim'
   Plug 'jnurmine/Zenburn'
   Plug 'KKPMW/moonshine-vim'
-  "Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'ctrlpvim/ctrlp.vim'
   Plug 'beyondwords/vim-twig'
+  Plug 'keith/swift.vim'
   Plug 'airblade/vim-gitgutter'
   call plug#end()
 endif
 
 "colorscheme jellybeans
 "colorscheme zenburn
-colorscheme moonshine
+colorscheme moonshine_lowcontrast
 
 " ==============================
 " Plugin settings
@@ -87,14 +100,38 @@ let g:netrw_liststyle=3
 "controlP
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/](\.(git|hg|svn|__pycache__|env|venv))|(env|venv)$',
-  \ 'file': '\v\.(exe|so|dll|pyc|pyo|class)$',
+  \ 'file': '\v\.(exe|so|dll|pyo|pyc)$',
   \ 'link': 'some_bad_symbolic_links',
   \ }
+
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
+"let g:ctrlp_prompt_mappings = {
+"    \ 'AcceptSelection("e")': ['<c-t>'],
+"    \ 'AcceptSelection("t")': ['<CR>', '<2-LeftMouse>'],
+"    \ }
+
+let g:airline_powerline_fonts = 1
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+
+"let g:airline#extensions#tabline#enabled = 1
+
+" unicode symbols
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_symbols.linenr = 'nr'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.paste = 'p'
+let g:airline_symbols.whitespace = 'w'
 
 " =====================
 " Key Mapping
 " =====================
-
+"let NERDTreeMapOpenInTab='<S-ENTER>'
 " ---(NERD Commenter)---------------------------------------------------------
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
@@ -108,11 +145,14 @@ map <F3> :source ~/vim_session <cr>     " And load session with F3
 
 " Tabs
 map <Tab> :tabnext<cr>
-map <C-Tab> :tabprevious<cr>
+map <S-Tab> :tabprevious<cr>
 map <C-n> :tabnew<CR>
 map <C-e> :NERDTreeTabsToggle<CR>
 
-"map <C-S> :w
+map <C-S> :w<CR>
+map <C-b> :w<CR>
+nmap <C-q> :q!<CR>
+map <C-x> :q<CR>
 "map <C-e> :Explore<CR>
 "map <ESC>[5D <C-Left> :b<cr>
 
@@ -127,3 +167,12 @@ map <F10> :!make run<CR>
 map <F11> :!make build<CR>
 
 noremap <F4> :set hlsearch! hlsearch?<CR>
+
+" Django helpers
+" --------------
+
+"function DjangoUnittest(arg1)
+"  execute '!PYTHONWARNINGS=ignore python manage.py test ' . a:arg1 . ' --noinput '
+"endfunction
+
+"command -nargs=* django_unittest call DjangoUnittest(<f-args>)

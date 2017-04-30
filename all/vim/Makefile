@@ -9,15 +9,16 @@ pull_basic:
 	cp ~/.vimrc vimrc_basic
 
 copy_after:
-	echo "copying after ..."
+	@echo "copying after ..."
+	@mkdir -p ~/.vim
 	@cp -r after ~/.vim/.
 
 install_basic: copy_after
-	echo "copying vimrc ..."
+	@echo "copying vimrc ..."
 	@cp vimrc_basic ~/.vimrc
 
 
 install: copy_after
-	echo "copying vimrc ..."
+	@echo "copying vimrc ..."
 	@cp vimrc ~/.vimrc
 

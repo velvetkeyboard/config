@@ -16,6 +16,8 @@ SH_CURRENT_HOST="${SH_COLOR_YELLOW}\H${SH_COLOR_RESET}"
 
 PS1="${SH_CURRENT_USER} at ${SH_CURRENT_HOST} on \w\n$DOLLAR "
 
+export PATH=$PATH:/Applications/VMware\ Fusion.app/Contents/Library/
+
 # Helpers
 alias docker_env='eval $(docker-machine env)'
 alias vimrc='vim ~/.vimrc'
@@ -23,7 +25,6 @@ alias ls='ls -agh'
 alias ..='cd ..'
 alias .='ls'
 
-eval $(docker-machine env)
 #case `id -u` in
 #0) PS1="${PS1}# ";;
 #*) PS1="${PS1}\n ";;

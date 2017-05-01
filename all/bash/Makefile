@@ -1,6 +1,7 @@
 pull:
-	cp ~/.inputrc inputrc
-	cp ~/.bashrc bashrc
+	-cp ~/.inputrc inputrc
+	-cp ~/.bashrc bashrc
+	-cp ~/.bash_profile bash_profile
 
 install:
 	cp -rf bash_profile ~/.bash_profile

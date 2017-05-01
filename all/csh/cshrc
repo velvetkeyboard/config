@@ -18,7 +18,7 @@ setenv blue  '%{\033[34m%}'
 setenv cyan  '%{\033[36m%}'
 setenv lgrey '%{\033[37m%}'
 
-set prompt = "($green%n$lgrey@$blue%m) $lgrey%~\n $cyan%#$lgrey "
+set prompt = "$green%n$lgrey at $blue%m$lgrey on $cyan%~\n $cyan%#$lgrey "
 
 # -(Macros)-------------------------------------------------------------------
 alias . 'ls -sbFG'

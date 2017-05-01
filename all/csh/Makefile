@@ -1,2 +1,2 @@
 install:
-	cp cshrc ~/.cshrc
+	cp -rf cshrc ~/.cshrc

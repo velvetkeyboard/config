@@ -6,7 +6,7 @@
 
 filetype off                  " required
 
-set nocompatible              " be iMproved, required
+set nocompatible
 set noautoread
 set number
 set backspace=2
@@ -20,6 +20,8 @@ set smartindent
 set expandtab
 set wrap!
 set clipboard=unnamed
+set nocursorline
+set nocursorcolumn
 "set noswapfile
 "set backupdir=~/.vim/backup//
 "set directory=~/.vim/swap//
@@ -52,8 +54,6 @@ else
   call plug#begin('~/.vim/plugged')
   " Plug 'gmarik/Vundle.vim'
   Plug 'vim-airline/vim-airline'
-  Plug 'scrooloose/nerdtree'
-  Plug 'jistr/vim-nerdtree-tabs'
   Plug 'Yggdroot/indentLine'
   Plug 'mattn/emmet-vim'
   Plug 'ervandew/supertab'
@@ -61,15 +61,14 @@ else
   Plug 'jnurmine/Zenburn'
   Plug 'KKPMW/moonshine-vim'
   Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'beyondwords/vim-twig'
   Plug 'keith/swift.vim'
   Plug 'airblade/vim-gitgutter'
   call plug#end()
 endif
 
-"colorscheme jellybeans
+colorscheme jellybeans
 "colorscheme zenburn
-colorscheme moonshine_lowcontrast
+"colorscheme moonshine_lowcontrast
 
 " ==============================
 " Plugin settings
@@ -134,10 +133,10 @@ let g:airline_symbols.whitespace = 'w'
 "let NERDTreeMapOpenInTab='<S-ENTER>'
 " ---(NERD Commenter)---------------------------------------------------------
 " Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
+"let g:NERDSpaceDelims = 1
 
 " " Use compact syntax for prettified multi-line comments
-let g:NERDCompactSexyComs = 1
+"let g:NERDCompactSexyComs = 1
 
 " Sessions
 map <F2> :mksession! ~/vim_session <cr> " Quick write session with F2
@@ -147,13 +146,13 @@ map <F3> :source ~/vim_session <cr>     " And load session with F3
 map <Tab> :tabnext<cr>
 map <S-Tab> :tabprevious<cr>
 map <C-n> :tabnew<CR>
-map <C-e> :NERDTreeTabsToggle<CR>
+"map <C-e> :NERDTreeTabsToggle<CR>
 
 map <C-S> :w<CR>
 map <C-b> :w<CR>
 nmap <C-q> :q!<CR>
 map <C-x> :q<CR>
-"map <C-e> :Explore<CR>
+map <C-e> :Explore<CR>
 "map <ESC>[5D <C-Left> :b<cr>
 
 " Navigation

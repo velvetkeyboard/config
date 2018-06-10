@@ -6,7 +6,7 @@
 
 # This is how one can set a reattach password:
 # password ODSJQf.4IJN7E    # "1234"
-
+#mousetrack on
 # no annoying audible bell, please
 vbell on
 
@@ -23,7 +23,9 @@ pow_detach_msg "Screen session of $LOGNAME $:cr:$:nl:ended."
 # termcapinfo  * '' 'hs:ts=\E_:fs=\E\:ds=\E_\E\'
 
 # make the shell in every window a login shell
-#shell -/bin/bash
+# shell -/bin/bash
+#shell -$SHELL
+defshell -bash
 
 # autoaka testing
 # shellaka '> |tcsh'
@@ -32,7 +34,7 @@ pow_detach_msg "Screen session of $LOGNAME $:cr:$:nl:ended."
 # set every new windows hardstatus line to somenthing descriptive
 # defhstatus "screen: ^En (^Et)"
 
-defscrollback 1000
+defscrollback 10000
 
 # don't kill window after the process died
 # zombie "^["
@@ -143,9 +145,10 @@ bind ^] paste [.]
 
 # caption always "%{Yb} %Y-%02m-%02d %0c %{k}|%{C} %LD %{k}|%{G} %l %{k}|%{W} %-Lw%{+u}%n %t%{-u}%+Lw"
 
-caption always "%{Kk} %H %{kK} %D %Y-%02m-%02d %0c %{k}|%{G} %l %{k}|%{W} %-w%{+u}%n %t%{-u}%+w"
-
+caption always "%{Kk} %H %{kK}%{W} %-w%{+u}%n %t%{-u}%+w"
 
 # utf8 default
 defutf8 on
 
+term "screen-256color"
+escape ^Jj

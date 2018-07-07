@@ -21,7 +21,7 @@ install_basic: copy_after
 install: copy_after
 	@echo "copying vimrc ..."
 	@cp vimrc ~/.vimrc
-	mkdir -p .vim/undo
-	mkdir -p .vim/backup
-	mkdir -p .vim/swap
+	mkdir -p ~/.vim/undo
+	mkdir -p ~/.vim/backup
+	mkdir -p ~/.vim/swap
 

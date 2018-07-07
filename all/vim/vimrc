@@ -6,7 +6,7 @@
 
 filetype off                  " required
 
-set nocompatible
+"set nocompatible              " be iMproved, required
 set noautoread
 set number
 set backspace=2
@@ -18,14 +18,12 @@ set tabstop=4
 set shiftwidth=4
 set smartindent
 set expandtab
-set wrap!
+set wrap
 set clipboard=unnamed
-set nocursorline
-set nocursorcolumn
 "set noswapfile
-"set backupdir=~/.vim/backup//
-"set directory=~/.vim/swap//
-"set undodir=~/.vim/undo//
+set backupdir=~/.vim/backup//
+set directory=~/.vim/swap//
+set undodir=~/.vim/undo//
 syntax enable
 syntax on
 
@@ -34,6 +32,8 @@ syntax on
 " :w<CR>, but :Write won't.
 cnoreabbrev W w
 cnoreabbrev Q q
+cnoreabbrev Wq wq
+cnoreabbrev WQ wq
 
 " Terminus is love, Terminus is life
 " Set it everywhere @_@
@@ -54,15 +54,23 @@ else
   call plug#begin('~/.vim/plugged')
   " Plug 'gmarik/Vundle.vim'
   Plug 'vim-airline/vim-airline'
-  Plug 'Yggdroot/indentLine'
+  " Exploring and Organizing files
+  Plug 'scrooloose/nerdtree'
+  Plug 'jistr/vim-nerdtree-tabs'
+  Plug 'ctrlpvim/ctrlp.vim'
+  " Code sugar
   Plug 'mattn/emmet-vim'
   Plug 'ervandew/supertab'
+  Plug 'Yggdroot/indentLine'
+  " Language highlight
+  "Plug 'beyondwords/vim-twig'
+  "Plug 'keith/swift.vim'
+  Plug 'airblade/vim-gitgutter'
+  "Plug 'pseewald/vim-anyfold'
+  " Themes
   Plug 'nanotech/jellybeans.vim'
   Plug 'jnurmine/Zenburn'
-  Plug 'KKPMW/moonshine-vim'
-  Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'keith/swift.vim'
-  Plug 'airblade/vim-gitgutter'
+  "Plug 'KKPMW/moonshine-vim'
   call plug#end()
 endif
 
@@ -133,10 +141,14 @@ let g:airline_symbols.whitespace = 'w'
 "let NERDTreeMapOpenInTab='<S-ENTER>'
 " ---(NERD Commenter)---------------------------------------------------------
 " Add spaces after comment delimiters by default
-"let g:NERDSpaceDelims = 1
+let g:NERDSpaceDelims = 1
 
 " " Use compact syntax for prettified multi-line comments
-"let g:NERDCompactSexyComs = 1
+let g:NERDCompactSexyComs = 1
+
+" AnyFold
+"let anyfold_activate=0
+"set foldlevel=0
 
 " Sessions
 map <F2> :mksession! ~/vim_session <cr> " Quick write session with F2
@@ -146,13 +158,13 @@ map <F3> :source ~/vim_session <cr>     " And load session with F3
 map <Tab> :tabnext<cr>
 map <S-Tab> :tabprevious<cr>
 map <C-n> :tabnew<CR>
-"map <C-e> :NERDTreeTabsToggle<CR>
+map <C-e> :NERDTreeTabsToggle<CR>
 
 map <C-S> :w<CR>
 map <C-b> :w<CR>
 nmap <C-q> :q!<CR>
 map <C-x> :q<CR>
-map <C-e> :Explore<CR>
+"map <C-e> :Explore<CR>
 "map <ESC>[5D <C-Left> :b<cr>
 
 " Navigation
@@ -175,3 +187,5 @@ noremap <F4> :set hlsearch! hlsearch?<CR>
 "endfunction
 
 "command -nargs=* django_unittest call DjangoUnittest(<f-args>)
+
+com! Formatjson %!python -m json.tool

@@ -25,6 +25,8 @@ alias ls='ls -agh'
 alias ..='cd ..'
 alias .='ls'
 
+export PATH=$PATH:/Applications/CMake.app/Contents/bin/
+
 #case `id -u` in
 #0) PS1="${PS1}# ";;
 #*) PS1="${PS1}\n ";;

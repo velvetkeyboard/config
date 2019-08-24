@@ -1,3 +1,6 @@
+# Prompt
+# ----------------------------------------------------------------------------
+
 # Colors
 SH_COLOR_RESET="\[$(tput sgr0)\]"
 SH_COLOR_BLUE="\[\033[38;5;31m\]"
@@ -14,21 +17,26 @@ fi
 SH_CURRENT_USER="${SH_COLOR_GREEN}\u${SH_COLOR_RESET}"
 SH_CURRENT_HOST="${SH_COLOR_YELLOW}\H${SH_COLOR_RESET}"
 
-PS1="${SH_CURRENT_USER} at ${SH_CURRENT_HOST} on \w\n$DOLLAR "
+PS1="${SH_CURRENT_USER} at ${SH_CURRENT_HOST} on ${SH_COLOR_BLUE}\w${SH_COLOR_RESET}\n$DOLLAR "
 
-export PATH=$PATH:/Applications/VMware\ Fusion.app/Contents/Library/
+# Shell History Shit
+# ----------------------------------------------------------------------------
 
-# Helpers
-alias docker_env='eval $(docker-machine env)'
+SHELL_SESSION_HISTORY=0
+# HISTSIZE=1000
+# HISTFILESIZE=100000
+
+# Alias
+# ----------------------------------------------------------------------------
+
 alias vimrc='vim ~/.vimrc'
 alias ls='ls -agh'
 alias ..='cd ..'
 alias .='ls'
 
-export PATH=$PATH:/Applications/CMake.app/Contents/bin/
+# Customs Paths
+# ----------------------------------------------------------------------------
 
-#case `id -u` in
-#0) PS1="${PS1}# ";;
-#*) PS1="${PS1}\n ";;
-#esac
+# PIP installs with "--user" arg/flag
+export PATH=$PATH:~/.local/bin/
 

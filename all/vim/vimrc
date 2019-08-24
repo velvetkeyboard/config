@@ -20,6 +20,7 @@ set smartindent
 set expandtab
 set wrap
 set clipboard=unnamed
+"set clipboard=unnamedplus
 "set noswapfile
 set backupdir=~/.vim/backup//
 set directory=~/.vim/swap//
@@ -52,24 +53,43 @@ if empty(glob("~/.vim/autoload/plug.vim"))
   execute '!curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.github.com/junegunn/vim-plug/master/plug.vim'
 else
   call plug#begin('~/.vim/plugged')
-  " Plug 'gmarik/Vundle.vim'
+
+  " Enhacing Vim
+  " ------------------------------
+
   Plug 'vim-airline/vim-airline'
+  "Plug 'pseewald/vim-anyfold'
+
   " Exploring and Organizing files
+  " ------------------------------
+
   Plug 'scrooloose/nerdtree'
   Plug 'jistr/vim-nerdtree-tabs'
   Plug 'ctrlpvim/ctrlp.vim'
-  " Code sugar
-  Plug 'mattn/emmet-vim'
+
+  " Code Sugar
+  " -----------------------------
+
+  " Plug 'mattn/emmet-vim'
   Plug 'ervandew/supertab'
   Plug 'Yggdroot/indentLine'
+
   " Language highlight
+  " -----------------------------
+
   "Plug 'beyondwords/vim-twig'
   "Plug 'keith/swift.vim'
   Plug 'airblade/vim-gitgutter'
-  "Plug 'pseewald/vim-anyfold'
+
   " Themes
+  " -----------------------------
+
   Plug 'nanotech/jellybeans.vim'
   Plug 'jnurmine/Zenburn'
+  "Plug 'ntk148v/vim-horizon'
+  "Plug 'axvr/photon.vim'
+  "Plug 'smallwat3r/vim-mono-sw'
+  "Plug 'chriskempson/base16-vim'
   "Plug 'KKPMW/moonshine-vim'
   call plug#end()
 endif
@@ -119,36 +139,61 @@ let g:ctrlp_cmd = 'CtrlP'
 "    \ 'AcceptSelection("t")': ['<CR>', '<2-LeftMouse>'],
 "    \ }
 
+" ========================
+" Air Line
+" ========================
+
 let g:airline_powerline_fonts = 1
 
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
+"if !exists('g:airline_symbols')
+"    let g:airline_symbols = {}
+"endif
 
-"let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
 
 " unicode symbols
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
-let g:airline_symbols.linenr = 'nr'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.paste = 'p'
-let g:airline_symbols.whitespace = 'w'
+"let g:airline_symbols.linenr = 'nr'
+"let g:airline_symbols.branch = '⎇'
+"let g:airline_symbols.paste = 'p'
+"let g:airline_symbols.whitespace = 'w'
 
-" =====================
-" Key Mapping
-" =====================
 "let NERDTreeMapOpenInTab='<S-ENTER>'
 " ---(NERD Commenter)---------------------------------------------------------
 " Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
+"let g:NERDSpaceDelims = 1
 
 " " Use compact syntax for prettified multi-line comments
-let g:NERDCompactSexyComs = 1
+"let g:NERDCompactSexyComs = 1
 
 " AnyFold
 "let anyfold_activate=0
 "set foldlevel=0
+
+" =================
+" NNN
+" =================
+
+"let g:nnn#set_default_mappings = 0
+"let g:nnn#command = 'nnn -l'
+
+" Opens the nnn window in a split
+"let g:nnn#layout = 'vnew' " or vnew, tabnew etc.
+
+" Or pass a dictionary with window size
+" let g:nnn#layout = { 'left': '~20%' } " or right, up, down
+
+"let g:nnn#action = {
+"      \ '<c-t>': 'tab split',
+"      \ '<c-x>': 'split',
+"      \ '<c-v>': 'vsplit' }
+
+let $DISABLE_FILE_OPEN_ON_NAV=1
+
+" =====================
+" Key Mapping
+" =====================
 
 " Sessions
 map <F2> :mksession! ~/vim_session <cr> " Quick write session with F2
@@ -158,34 +203,47 @@ map <F3> :source ~/vim_session <cr>     " And load session with F3
 map <Tab> :tabnext<cr>
 map <S-Tab> :tabprevious<cr>
 map <C-n> :tabnew<CR>
+
+" File Exploration
+" ----------------------------
+
 map <C-e> :NERDTreeTabsToggle<CR>
+"map <C-e> :NnnPicker<CR>
+"map <C-e> :Te<CR>
+"map <C-e> :Explore<CR>
+"map <ESC>[5D <C-Left> :b<cr>
+
+" Saving and Quitting
+" -----------------------
 
 map <C-S> :w<CR>
 map <C-b> :w<CR>
 nmap <C-q> :q!<CR>
 map <C-x> :q<CR>
-"map <C-e> :Explore<CR>
-"map <ESC>[5D <C-Left> :b<cr>
+map <q> :q<CR>
 
-" Navigation
+" Window/Splits Navigation
+" --------------------------------------
 map <C-k> :wincmd k<CR>
 map <C-j> :wincmd j<CR>
 map <C-h> :wincmd h<CR>
 map <C-l> :wincmd l<CR>
 
-" Fn - Yup! Imma still using make :3
+"nnoremap <Right> <C-w>l
+"nnoremap <Left> <C-w>h
+"nnoremap <Up> <C-w>k
+"nnoremap <Down> <C-w>j
+
+" Building Commands
+" ------------------------------------
 map <F10> :!make run<CR>
 map <F11> :!make build<CR>
 
+" Searching Terms
+" ----------------------------------------
 noremap <F4> :set hlsearch! hlsearch?<CR>
 
-" Django helpers
-" --------------
-
-"function DjangoUnittest(arg1)
-"  execute '!PYTHONWARNINGS=ignore python manage.py test ' . a:arg1 . ' --noinput '
-"endfunction
-
-"command -nargs=* django_unittest call DjangoUnittest(<f-args>)
+" Formatting JSON
+" ---------------
 
 com! Formatjson %!python -m json.tool

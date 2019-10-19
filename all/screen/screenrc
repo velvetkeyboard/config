@@ -6,7 +6,8 @@
 
 # This is how one can set a reattach password:
 # password ODSJQf.4IJN7E    # "1234"
-#mousetrack on
+# mousetrack on
+
 # no annoying audible bell, please
 vbell on
 
@@ -24,7 +25,7 @@ pow_detach_msg "Screen session of $LOGNAME $:cr:$:nl:ended."
 
 # make the shell in every window a login shell
 # shell -/bin/bash
-#shell -$SHELL
+# shell -$SHELL
 defshell -bash
 
 # autoaka testing
@@ -39,10 +40,7 @@ defscrollback 10000
 # don't kill window after the process died
 # zombie "^["
 
-################
-#
-# xterm tweaks
-#
+# --( xterm tweaks )----------------------------------------------------------
 
 #xterm understands both im/ic and doesn't have a status line.
 #Note: Do not specify im and ic in the real termcap/info file as
@@ -130,25 +128,29 @@ register [ "\033:se noai\015a"
 register ] "\033:se ai\015a"
 bind ^] paste [.]
 
-################
-#
-# default windows
-#
+escape ^Jj
 
-# screen -t local 0
-# screen -t mail 1 elm
-# screen -t 40 2 rlogin faui40
+# ---( Default Windows )------------------------------------------------------
+# screen -t [window title] [tab number] [command]
+screen -t htop 0 htop
 
-# caption always "%3n %t%? @%u%?%? [%h]%?"
-# hardstatus alwaysignore
-# hardstatus alwayslastline "%w"
+# ---( Status Bars )----------------------------------------------------------
 
-# caption always "%{Yb} %Y-%02m-%02d %0c %{k}|%{C} %LD %{k}|%{G} %l %{k}|%{W} %-Lw%{+u}%n %t%{-u}%+Lw"
+setenv date '%D, %M %d %Y'
+setenv hour '%c'
+setenv base '%H'
+setenv prev_windows '%{+d Kk} %-w'
+setenv curr_window '%{-d}%{+b kK} %n %t'
+setenv post_windows '%{+d Kk}%{-u}%+w'
+setenv scape_mode '%?%E%{WR} SCAPE %:%{WC} NORMAL %?'
 
-caption always "%{Kk} %H %{kK}%{W} %-w%{+u}%n %t%{-u}%+w"
+caption always "${scape_mode}${prev_windows}${curr_window}${post_windows}"
+
+hardstatus alwaysignore
+hardstatus alwayslastline "%{+d K}${base} - ${date} - ${hour} - %S"
 
 # utf8 default
 defutf8 on
 
-term "screen-256color"
-escape ^Jj
+term screen-256color
+#term xterm-256color

@@ -57,20 +57,20 @@ else
   " Enhacing Vim
   " ------------------------------
 
-  Plug 'vim-airline/vim-airline'
+  "Plug 'vim-airline/vim-airline'
   "Plug 'pseewald/vim-anyfold'
 
   " Exploring and Organizing files
   " ------------------------------
 
-  Plug 'scrooloose/nerdtree'
-  Plug 'jistr/vim-nerdtree-tabs'
+  "Plug 'scrooloose/nerdtree'
+  "Plug 'jistr/vim-nerdtree-tabs'
   Plug 'ctrlpvim/ctrlp.vim'
 
   " Code Sugar
   " -----------------------------
 
-  " Plug 'mattn/emmet-vim'
+  Plug 'mattn/emmet-vim'
   Plug 'ervandew/supertab'
   Plug 'Yggdroot/indentLine'
 
@@ -86,11 +86,11 @@ else
 
   Plug 'nanotech/jellybeans.vim'
   Plug 'jnurmine/Zenburn'
-  "Plug 'ntk148v/vim-horizon'
-  "Plug 'axvr/photon.vim'
-  "Plug 'smallwat3r/vim-mono-sw'
-  "Plug 'chriskempson/base16-vim'
-  "Plug 'KKPMW/moonshine-vim'
+  Plug 'ntk148v/vim-horizon'
+  Plug 'axvr/photon.vim'
+  Plug 'smallwat3r/vim-mono-sw'
+  Plug 'chriskempson/base16-vim'
+  Plug 'KKPMW/moonshine-vim'
   call plug#end()
 endif
 
@@ -98,59 +98,48 @@ colorscheme jellybeans
 "colorscheme zenburn
 "colorscheme moonshine_lowcontrast
 
-" ==============================
-" Plugin settings
-" ==============================
+" Section - Global Variables
 
-" Vim
-let g:indentLine_color_term = 242
+" Plugin - Netrw
+" ----------------------------------------------------------------------------
+" let g:netrw_liststyle=3
 
-"GVim
-let g:indentLine_color_gui = '#EFEFEF'
-
-" none X terminal
-let g:indentLine_color_tty_light = 7 " (default: 4)
-let g:indentLine_color_dark = 1 " (default: 2)
-
+" Plugin - Yggdroot/indentLine
+" ----------------------------------------------------------------------------
+let g:indentLine_color_term = 242       " Vim
+let g:indentLine_color_gui = '#EFEFEF'  " GVim
+let g:indentLine_color_tty_light = 7    " none X terminal (default: 4)
+let g:indentLine_color_dark = 1         " (default: 2)
 let g:indentLine_char = '|'
-
-"let g:indentLine_concealcursor = 'vc' "(default 'inc')
-"let g:indentLine_conceallevel=0 "(default 2)
-
+"let g:indentLine_concealcursor = 'vc'  " (default 'inc')
+"let g:indentLine_conceallevel=0        " (default 2)
 "let g:indentLine_enabled = 1
 
-"explore mode
-let g:netrw_liststyle=3
+" Plugin - mattn/emmet-vim
+" ----------------------------------------------------------------------------
+let g:user_emmet_leader_key=','
 
-"let g:user_emmet_leader_key=','
-
-"controlP
+" Plugin - ctrlpvim/ctrlp.vim
+" ----------------------------------------------------------------------------
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.(git|hg|svn|__pycache__|env|venv))|(env|venv)$',
+  \ 'dir':  '\v[\/](\.(git|hg|svn|__pycache__|env|venv|node_modules))|(env|venv)$',
   \ 'file': '\v\.(exe|so|dll|pyo|pyc)$',
   \ 'link': 'some_bad_symbolic_links',
   \ }
-
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-
 "let g:ctrlp_prompt_mappings = {
 "    \ 'AcceptSelection("e")': ['<c-t>'],
 "    \ 'AcceptSelection("t")': ['<CR>', '<2-LeftMouse>'],
 "    \ }
 
-" ========================
-" Air Line
-" ========================
-
+" Plugin - Air Line
+" ----------------------------------------------------------------------------
 let g:airline_powerline_fonts = 1
-
 "if !exists('g:airline_symbols')
 "    let g:airline_symbols = {}
 "endif
-
 let g:airline#extensions#tabline#enabled = 1
-
 " unicode symbols
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
@@ -159,71 +148,63 @@ let g:airline_right_sep = ''
 "let g:airline_symbols.paste = 'p'
 "let g:airline_symbols.whitespace = 'w'
 
-"let NERDTreeMapOpenInTab='<S-ENTER>'
-" ---(NERD Commenter)---------------------------------------------------------
-" Add spaces after comment delimiters by default
-"let g:NERDSpaceDelims = 1
+" Plugin - NERD
+" ----------------------------------------------------------------------------
+" let NERDTreeMapOpenInTab='<S-ENTER>'
+" let g:NERDSpaceDelims = 1  " Add spaces after comment delimiters by default
+" let g:NERDCompactSexyComs = 1  " Use compact syntax for prettified multi-line comments
 
-" " Use compact syntax for prettified multi-line comments
-"let g:NERDCompactSexyComs = 1
-
-" AnyFold
+" Plugin - AnyFold
+" ----------------------------------------------------------------------------
 "let anyfold_activate=0
 "set foldlevel=0
 
-" =================
-" NNN
-" =================
-
-"let g:nnn#set_default_mappings = 0
-"let g:nnn#command = 'nnn -l'
-
-" Opens the nnn window in a split
-"let g:nnn#layout = 'vnew' " or vnew, tabnew etc.
-
-" Or pass a dictionary with window size
-" let g:nnn#layout = { 'left': '~20%' } " or right, up, down
-
-"let g:nnn#action = {
+" Plugin - NNN
+" ----------------------------------------------------------------------------
+" let g:nnn#set_default_mappings = 0
+" let g:nnn#command = 'nnn -l'
+" let g:nnn#layout = 'vnew' " or vnew, tabnew etc.
+" let g:nnn#layout = { 'left': '~20%' }  " or right, up, down
+" let g:nnn#action = {
 "      \ '<c-t>': 'tab split',
 "      \ '<c-x>': 'split',
 "      \ '<c-v>': 'vsplit' }
 
 let $DISABLE_FILE_OPEN_ON_NAV=1
 
-" =====================
-" Key Mapping
-" =====================
+" Section - Key Mapping
+" ============================================================================
 
 " Sessions
+" ----------------------------------------------------------------------------
 map <F2> :mksession! ~/vim_session <cr> " Quick write session with F2
 map <F3> :source ~/vim_session <cr>     " And load session with F3
 
 " Tabs
+" ----------------------------------------------------------------------------
 map <Tab> :tabnext<cr>
 map <S-Tab> :tabprevious<cr>
 map <C-n> :tabnew<CR>
 
 " File Exploration
-" ----------------------------
+" ----------------------------------------------------------------------------
 
-map <C-e> :NERDTreeTabsToggle<CR>
+"map <C-e> :NERDTreeTabsToggle<CR>
 "map <C-e> :NnnPicker<CR>
 "map <C-e> :Te<CR>
-"map <C-e> :Explore<CR>
+map <C-e> :Explore<CR>
 "map <ESC>[5D <C-Left> :b<cr>
 
 " Saving and Quitting
-" -----------------------
-
+" ----------------------------------------------------------------------------
 map <C-S> :w<CR>
 map <C-b> :w<CR>
 nmap <C-q> :q!<CR>
 map <C-x> :q<CR>
 map <q> :q<CR>
 
-" Window/Splits Navigation
-" --------------------------------------
+" Splitted Window Navigation
+" ----------------------------------------------------------------------------
 map <C-k> :wincmd k<CR>
 map <C-j> :wincmd j<CR>
 map <C-h> :wincmd h<CR>
@@ -235,15 +216,15 @@ map <C-l> :wincmd l<CR>
 "nnoremap <Down> <C-w>j
 
 " Building Commands
-" ------------------------------------
+" ----------------------------------------------------------------------------
 map <F10> :!make run<CR>
 map <F11> :!make build<CR>
 
 " Searching Terms
-" ----------------------------------------
+" ----------------------------------------------------------------------------
 noremap <F4> :set hlsearch! hlsearch?<CR>
 
 " Formatting JSON
-" ---------------
+" ----------------------------------------------------------------------------
 
 com! Formatjson %!python -m json.tool

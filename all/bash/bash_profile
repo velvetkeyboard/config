@@ -30,6 +30,7 @@ SHELL_SESSION_HISTORY=0
 # ----------------------------------------------------------------------------
 
 alias vimrc='vim ~/.vimrc'
+alias vim='vimx'
 alias ls='ls -agh'
 alias ..='cd ..'
 alias .='ls'

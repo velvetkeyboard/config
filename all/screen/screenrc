@@ -102,23 +102,19 @@ termcapinfo  hp700 'Z0=\E[?3h:Z1=\E[?3l:hs:ts=\E[62"p\E[0$~\E[2$~\E[1$}:fs=\E[0}
 termcap  vt100* ms:AL=\E[%dL:DL=\E[%dM:UP=\E[%dA:DO=\E[%dB:LE=\E[%dD:RI=\E[%dC
 terminfo vt100* ms:AL=\E[%p1%dL:DL=\E[%p1%dM:UP=\E[%p1%dA:DO=\E[%p1%dB:LE=\E[%p1%dD:RI=\E[%p1%dC
 
+# ---( Key Bindings )---------------------------------------------------------
 
-################
-#
-# keybindings
-#
-
-#remove some stupid / dangerous key bindings
+# remove some stupid / dangerous key bindings
 bind k
 bind ^k
 bind .
 bind ^bind \
 bind ^h
 bind h
-#make them better
+# make them better
 bind 'K' kill
-#bind 'I' login on
-#bind 'O' login off
+# bind 'I' login on
+# bind 'O' login off
 bind '}' history
 
 # Yet another hack:
@@ -132,22 +128,23 @@ escape ^Jj
 
 # ---( Default Windows )------------------------------------------------------
 # screen -t [window title] [tab number] [command]
-screen -t htop 0 htop
+# screen -t htop 0 htop
 
 # ---( Status Bars )----------------------------------------------------------
 
 setenv date '%D, %M %d %Y'
 setenv hour '%c'
 setenv base '%H'
-setenv prev_windows '%{+d Kk} %-w'
-setenv curr_window '%{-d}%{+b kK} %n %t'
-setenv post_windows '%{+d Kk}%{-u}%+w'
-setenv scape_mode '%?%E%{WR} SCAPE %:%{WC} NORMAL %?'
+setenv host '%{=d km} %u@%H ' 
+setenv prev_windows '%{=d kw} %-w'
+setenv curr_window '%{=bd wK} %n %t'
+setenv post_windows '%{=d kw}%{-u}%+w'
+setenv scape_mode '%?%E%{Wr} SCAPE %:%{wk} NORMAL %?'
 
-caption always "${scape_mode}${prev_windows}${curr_window}${post_windows}"
+caption always "${scape_mode}${host}${prev_windows}${curr_window}${post_windows}"
 
-hardstatus alwaysignore
-hardstatus alwayslastline "%{+d K}${base} - ${date} - ${hour} - %S"
+# hardstatus alwaysignore
+# hardstatus alwayslastline "%{+d kw}${base} - ${date} - ${hour} - %S"
 
 # utf8 default
 defutf8 on

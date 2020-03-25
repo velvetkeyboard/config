@@ -16,7 +16,12 @@ set encoding=utf-8
 set colorcolumn=80
 set tabstop=4
 set shiftwidth=4
-set smartindent
+"set smartindent
+set t_Co=256
+set nosmartindent
+set cindent
+set cinkeys-=0#
+set indentkeys-=0#
 set expandtab
 set wrap
 set clipboard=unnamed
@@ -59,6 +64,7 @@ else
 
   "Plug 'vim-airline/vim-airline'
   "Plug 'pseewald/vim-anyfold'
+  Plug 'itchyny/lightline.vim'
 
   " Exploring and Organizing files
   " ------------------------------
@@ -79,11 +85,12 @@ else
 
   "Plug 'beyondwords/vim-twig'
   "Plug 'keith/swift.vim'
+  Plug 'rust-lang/rust.vim'
   Plug 'airblade/vim-gitgutter'
 
   " Themes
   " -----------------------------
-
+  Plug 'dracula/vim', { 'as': 'dracula' }
   Plug 'nanotech/jellybeans.vim'
   Plug 'jnurmine/Zenburn'
   Plug 'ntk148v/vim-horizon'
@@ -91,12 +98,14 @@ else
   Plug 'smallwat3r/vim-mono-sw'
   Plug 'chriskempson/base16-vim'
   Plug 'KKPMW/moonshine-vim'
+  Plug 'arcticicestudio/nord-vim'
   call plug#end()
 endif
 
-colorscheme jellybeans
-"colorscheme zenburn
+"colorscheme jellybeans
+"colorscheme dracula
 "colorscheme moonshine_lowcontrast
+colorscheme nord
 
 " Section - Global Variables
 
@@ -118,13 +127,15 @@ let g:indentLine_char = '|'
 " Plugin - mattn/emmet-vim
 " ----------------------------------------------------------------------------
 let g:user_emmet_leader_key=','
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
 
 " Plugin - ctrlpvim/ctrlp.vim
 " ----------------------------------------------------------------------------
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\v[\/](\.(git|hg|svn|__pycache__|env|venv|node_modules))|(env|venv)$',
+  \ 'dir':  '\v[\/](\.(git|hg|svn|__pycache__|env|venv|node_modules))|(env|venv|node_modules|target)$',
   \ 'file': '\v\.(exe|so|dll|pyo|pyc)$',
   \ 'link': 'some_bad_symbolic_links',
   \ }
@@ -147,6 +158,28 @@ let g:airline_right_sep = ''
 "let g:airline_symbols.branch = '⎇'
 "let g:airline_symbols.paste = 'p'
 "let g:airline_symbols.whitespace = 'w'
+
+" Plugin - lightline
+" ----------------------------------------------------------------------------
+
+set laststatus=2
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'component_function': {
+      \   'filename': 'LightlineFilename',
+      \ },
+      \ }
+
+function! LightlineFilename()
+  return &filetype ==# 'vimfiler' ? vimfiler#get_status_string() :
+        \ &filetype ==# 'unite' ? unite#get_status_string() :
+        \ &filetype ==# 'vimshell' ? vimshell#get_status_string() :
+        \ expand('%:F') !=# '' ? expand('%:F') : '[No Name]'
+endfunction
+
+let g:unite_force_overwrite_statusline = 0
+let g:vimfiler_force_overwrite_statusline = 0
+let g:vimshell_force_overwrite_statusline = 0
 
 " Plugin - NERD
 " ----------------------------------------------------------------------------
@@ -203,7 +236,7 @@ nmap <C-q> :q!<CR>
 map <C-x> :q<CR>
 map <q> :q<CR>
 
-" Splitted Window Navigation
+" Window/Splits Navigation
 " ----------------------------------------------------------------------------
 map <C-k> :wincmd k<CR>
 map <C-j> :wincmd j<CR>

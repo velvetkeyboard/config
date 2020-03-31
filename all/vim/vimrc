@@ -16,7 +16,7 @@ set encoding=utf-8
 set colorcolumn=80
 set tabstop=4
 set shiftwidth=4
-"set smartindent
+set smartindent
 set t_Co=256
 set nosmartindent
 set cindent
@@ -24,8 +24,8 @@ set cinkeys-=0#
 set indentkeys-=0#
 set expandtab
 set wrap
-set clipboard=unnamed
-"set clipboard=unnamedplus
+"set clipboard=unnamed
+set clipboard=unnamedplus
 "set noswapfile
 set backupdir=~/.vim/backup//
 set directory=~/.vim/swap//
@@ -256,6 +256,12 @@ map <F11> :!make build<CR>
 " Searching Terms
 " ----------------------------------------------------------------------------
 noremap <F4> :set hlsearch! hlsearch?<CR>
+
+" Copy/Pasta
+" ----------------------------------------------------------------------------
+
+nnoremap y "+y
+nnoremap p "+p
 
 " Formatting JSON
 " ----------------------------------------------------------------------------

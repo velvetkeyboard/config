@@ -1,4 +1,7 @@
 pull:
+	rm inputrc
+	rm bashrc
+	rm bash_profile
 	-cp ~/.inputrc inputrc
 	-cp ~/.bashrc bashrc
 	-cp ~/.bash_profile bash_profile

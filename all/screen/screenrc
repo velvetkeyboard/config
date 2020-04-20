@@ -135,11 +135,11 @@ escape ^Jj
 setenv date '%D, %M %d %Y'
 setenv hour '%c'
 setenv base '%H'
-setenv host '%{=d km} %u@%H ' 
-setenv prev_windows '%{=d kw} %-w'
-setenv curr_window '%{=bd wK} %n %t'
-setenv post_windows '%{=d kw}%{-u}%+w'
-setenv scape_mode '%?%E%{Wr} SCAPE %:%{wk} NORMAL %?'
+setenv host '%{=d WK} %u@%H '
+setenv prev_windows '%?%{=d kw} %-w%?'
+setenv curr_window '%{=d Ck}[%n %t]%{= kw}'
+setenv post_windows '%?%{=d kw}%+w%?'
+setenv scape_mode '%?%E%{WR} SCAPE %{= WR}%:%{kB} NORMAL %{= WB}%?'
 
 caption always "${scape_mode}${host}${prev_windows}${curr_window}${post_windows}"
 

@@ -1,12 +1,69 @@
-# .bashrc
+# Prompt
+# ----------------------------------------------------------------------------
 
-# Source global definitions
-if [ -f /etc/bashrc ]; then
-	. /etc/bashrc
+# Colors
+# ------
+
+RST="\[$(tput sgr0)\]"
+FG_BLACK="\[\033[38;5;0m\]"
+FG_RED="\[\033[38;5;1m\]"
+FG_GREEN="\[\033[38;5;2m\]"
+FG_YELLOW="\[\033[38;5;3m\]"
+FG_BLUE="\[\033[38;5;4m\]"
+FG_MAGENTA="\[\033[38;5;5m\]"
+FG_CYAN="\[\033[38;5;6m\]"
+FG_WHITE="\[\033[38;5;7m\]"
+FG_GREY="\[\033[38;5;8m\]"
+
+if [ `id -u` ]; then
+  DOLLAR="${FG_BLUE}λ${RST}"
+else
+  DOLLAR="${FG_RED}#${RST}"
 fi
 
-# Uncomment the following line if you don't like systemctl's auto-paging feature:
-# export SYSTEMD_PAGER=
+SH_CURR_USER="${FG_GREEN}\u${RST}"
+SH_CURR_HOST="${FG_YELLOW}\H${RST}"
+SH_LOCATION="${FG_BLUE}\w${RST}"
 
-# User specific aliases and functions
-. ~/.bash_profile
+PS1="${SH_CURR_USER} at ${SH_CURR_HOST} on ${SH_LOCATION}\n$DOLLAR "
+PROMPT_COMMAND=""
+
+# Shell History Shit
+# ----------------------------------------------------------------------------
+
+SHELL_SESSION_HISTORY=0
+# HISTSIZE=1000
+# HISTFILESIZE=100000
+
+# Alias
+# -------------------------:w---------------------------------------------------
+
+if [ -f vim ]; then
+    alias vim='vimx'
+fi
+# Navigation
+alias ..='cd ..'
+alias .='ls'
+alias ls='LC_ALL="C" LC_COLLATE="C" ls -agh'
+# Edit Configurations
+alias vimrc='vim ~/.vimrc'
+alias bashrc='vim ~/.bashrc'
+alias spectrwmrc='vim ~/.spectrwm.conf'
+# Text Manipulation
+alias clipboard='xclip -sel clip'
+alias lookup='grep -rnw . -e'
+# Apps
+alias kub3ctl='k3s kubectl'
+alias encrypt_gpg='gpg -c'
+alias decrypt_gpg='gpg -d -q'
+
+# Customs Paths
+# ----------------------------------------------------------------------------
+
+# PIP installs with "--user" arg/flag
+export PATH=$PATH:$HOME/spectrwm-scripts
+export PATH=$PATH:$HOME/Android/Sdk/platform-tools/
+export PATH=$PATH:$HOME/.local/bin/
+export PATH=$PATH:$HOME/flutter/bin
+export PATH=$PATH:/usr/local/go/bin
+

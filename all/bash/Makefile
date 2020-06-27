@@ -7,5 +7,6 @@ pull:
 	-cp ~/.bash_profile bash_profile
 
 install:
+	cp -rf bashrc ~/.bashrc
 	cp -rf bash_profile ~/.bash_profile
 	cp -rf inputrc ~/.inputrc

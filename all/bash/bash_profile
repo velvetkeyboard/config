@@ -1,43 +1,5 @@
-# Prompt
-# ----------------------------------------------------------------------------
-
-# Colors
-SH_COLOR_RESET="\[$(tput sgr0)\]"
-SH_COLOR_BLUE="\[\033[38;5;31m\]"
-SH_COLOR_RED="\[\033[38;5;196m\]"
-SH_COLOR_YELLOW="\[\033[38;5;220m\]"
-SH_COLOR_GREEN="\[\033[38;5;48m\]"
-
-if [ `id -u` ]; then
-  DOLLAR="${SH_COLOR_BLUE}λ${SH_COLOR_RESET}"
-else
-  DOLLAR="${SH_COLOR_RED}#${SH_COLOR_RESET}"
+if [ -f ~/.bashrc ]; then
+    . ~/.bashrc
 fi
 
-SH_CURRENT_USER="${SH_COLOR_GREEN}\u${SH_COLOR_RESET}"
-SH_CURRENT_HOST="${SH_COLOR_YELLOW}\H${SH_COLOR_RESET}"
-
-PS1="${SH_CURRENT_USER} at ${SH_CURRENT_HOST} on ${SH_COLOR_BLUE}\w${SH_COLOR_RESET}\n$DOLLAR "
-
-# Shell History Shit
-# ----------------------------------------------------------------------------
-
-SHELL_SESSION_HISTORY=0
-# HISTSIZE=1000
-# HISTFILESIZE=100000
-
-# Alias
-# ----------------------------------------------------------------------------
-
-alias vimrc='vim ~/.vimrc'
-alias vim='vimx'
-alias ls='ls -agh'
-alias ..='cd ..'
-alias .='ls'
-
-# Customs Paths
-# ----------------------------------------------------------------------------
-
-# PIP installs with "--user" arg/flag
-export PATH=$PATH:~/.local/bin/
-
+export PATH="$HOME/.cargo/bin:$PATH"

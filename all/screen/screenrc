@@ -117,6 +117,8 @@ bind 'K' kill
 # bind 'O' login off
 bind '}' history
 
+bindkey "^[[49~" select 1
+
 # Yet another hack:
 # Prepend/append register [/] to the paste if ^a^] is pressed.
 # This lets me have autoindent mode in vi.
@@ -124,22 +126,27 @@ register [ "\033:se noai\015a"
 register ] "\033:se ai\015a"
 bind ^] paste [.]
 
-escape ^Jj
+escape ^@a
 
 # ---( Default Windows )------------------------------------------------------
 # screen -t [window title] [tab number] [command]
-# screen -t htop 0 htop
+screen -t sys 0 journalctl -xf
+screen -t htop 1 htop
+screen -t vol 2 alsamixer -V all
+screen -t music 3 mocp
 
 # ---( Status Bars )----------------------------------------------------------
-
+#backtick 1 300 1 sh $HOME/battery-percentage.sh
+#setenv batt 'batt %1`'
 setenv date '%D, %M %d %Y'
 setenv hour '%c'
 setenv base '%H'
-setenv host '%{=d WK} %S '
-setenv prev_windows '%?%{=d kw}%-w%?'
-setenv curr_window '%{=d mk}[%n %t]%{= kw}'
+setenv host '%{=d wk} %S %{=d Kw}'
+setenv prev_windows '%?%{=d kw} %-w%?'
+setenv curr_window '%{=d bk}[%n %t]%{= kw}'
+setenv all_windows '%{=d kw} %-W'
 setenv post_windows '%?%{=d kw}%+w%?'
-setenv scape_mode '%?%E%{WR} SCAPE %{= WR}%:%{kC} NORMAL %{= WB}%?'
+setenv scape_mode '%?%E%{wr} SCAPE %{= WR}%:%{wk} NORMAL %{= WB}%?'
 
 caption always "${scape_mode}${host}${prev_windows}${curr_window}${post_windows}"
 

@@ -48,6 +48,7 @@ alias ls='LC_ALL="C" LC_COLLATE="C" ls -agh'
 # Edit Configurations
 alias vimrc='vim ~/.vimrc'
 alias bashrc='vim ~/.bashrc'
+alias screenrc='vim ~/.screenrc'
 alias spectrwmrc='vim ~/.spectrwm.conf'
 # Text Manipulation
 alias clipboard='xclip -sel clip'

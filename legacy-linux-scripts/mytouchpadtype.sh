@@ -1,0 +1,1 @@
+egrep -i 'synap|alps|etps' /proc/bus/input/devices

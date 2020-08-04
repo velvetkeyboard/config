@@ -1,0 +1,1 @@
+mocp -R alsa -T darkdot_theme
